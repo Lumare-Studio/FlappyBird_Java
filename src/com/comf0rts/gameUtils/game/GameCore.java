@@ -62,12 +62,12 @@ public class GameCore implements Runnable{
 	private void drawPipes() {
 		Random r = new Random();
 		int minHeight = 30;
-		int pipeSpeed = -300;
+		int pipeSpeed = -200;
 		int survivalSpace = 100;
 		int pipeHeight = r.nextInt(HEIGHT - minHeight - survivalSpace) + minHeight ;
 		LocationProperties tempLp = new LocationProperties(0 , 0 , pipeSpeed , 0);
-		GameObject upperPipe = new GameObject(800, 0, 100, pipeHeight, tempLp);
-		GameObject lowerPipe = new GameObject(800, pipeHeight + survivalSpace, 100, HEIGHT - pipeHeight - survivalSpace, tempLp);
+		GameObject upperPipe = new GameObject(WIDTH, 0, 100, pipeHeight, tempLp);
+		GameObject lowerPipe = new GameObject(WIDTH, pipeHeight + survivalSpace, 100, HEIGHT - pipeHeight - survivalSpace, tempLp);
 		objList.add(upperPipe);
 		objList.add(lowerPipe);
 	}
