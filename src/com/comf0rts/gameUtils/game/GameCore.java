@@ -52,8 +52,8 @@ public class GameCore implements Runnable{
 	}
 	
 	private void drawPipes() {
-		locationProperties tempLp = new locationProperties(0 , 0 , -1000 , 0);
-		gameObject newPipe = new gameObject(700, 0, 100, 100, tempLp);
+		locationProperties tempLp = new locationProperties(0 , 0 , 100 , 0);
+		gameObject newPipe = new gameObject(0, 0, 100, 100, tempLp);
 		objList[0] = newPipe;
 	}
 	
