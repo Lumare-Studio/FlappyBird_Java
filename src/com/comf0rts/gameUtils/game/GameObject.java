@@ -1,8 +1,6 @@
 package com.comf0rts.gameUtils.game;
 
-import java.awt.Dimension;
-
-public class gameObject {
+public class GameObject {
 	private int x;
 	private int iniX;
 	private double xDiffCum;
@@ -12,9 +10,9 @@ public class gameObject {
 	private String skin; // Skin files(not implemented)
 	private int height;
 	private int width;
-	private locationProperties lp;
+	private LocationProperties lp;
 	
-	public gameObject(int x, int y, int width, int height, locationProperties lp) {
+	public GameObject(int x, int y, int width, int height, LocationProperties lp) {
 		this.x = x;
 		this.iniX = x;
 		this.y = y;
@@ -59,7 +57,7 @@ public class gameObject {
 		return this.width;
 	}
 	
-	public locationProperties getLocationProperties() {
+	public LocationProperties getLocationProperties() {
 		return this.lp;
 	}
 	

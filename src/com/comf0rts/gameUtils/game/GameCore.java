@@ -4,9 +4,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
-
-
-import com.comf0rts.gameUtils.tools.PhysicsHandler;
+import java.util.LinkedList;
+import java.util.List;
 
 
 public class GameCore implements Runnable{
@@ -19,7 +18,7 @@ public class GameCore implements Runnable{
 	private Canvas canvas;
 	private BufferStrategy bs;
 	private boolean isRunning = true;
-	private gameObject[] objList;
+	private List<GameObject> objList;
 	
 	public void run() {
 		// Init canvas, Bufferstrategy, and Pen(Graphics g)
@@ -30,18 +29,18 @@ public class GameCore implements Runnable{
 			return;
 		}
 		g = bs.getDrawGraphics();
-		// init gameObject array
-		objList = new gameObject[5];
+		// init GameObject array
+		objList = new LinkedList<>();
 		// add a pipe
 		drawPipes();
 		
 		// start rendering
-		renderer r = new renderer(objList, FPS, canvas);
+		Renderer r = new Renderer(objList, FPS, canvas);
 		Thread t1 = new Thread(r);
 		t1.start();
 		
 		// init movement tracking
-		movementHandler mh = new movementHandler(objList, TRACKSPEED );
+		MovementHandler mh = new MovementHandler(objList, TRACKSPEED);
 		Thread t2 = new Thread(mh);
 		t2.start();
 	}
@@ -52,9 +51,9 @@ public class GameCore implements Runnable{
 	}
 	
 	private void drawPipes() {
-		locationProperties tempLp = new locationProperties(0 , 0 , -1000 , 0);
-		gameObject newPipe = new gameObject(700, 0, 100, 100, tempLp);
-		objList[0] = newPipe;
+		LocationProperties tempLp = new LocationProperties(0 , 0 , -1000 , 0);
+		GameObject newPipe = new GameObject(700, 0, 100, 100, tempLp);
+		objList.add(newPipe);
 	}
 	
 	public Dimension getDimension() {
