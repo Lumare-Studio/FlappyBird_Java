@@ -1,13 +1,17 @@
 package com.comf0rts.gameUtils.game;
 import com.comf0rts.gameUtils.tools.PhysicsHandler;
+
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
+
 // handles the movement of pipes and background
 //(movement tracker)
-public class movementHandler implements Runnable{
+public class MovementHandler implements Runnable{
 	private int trackSpeed;
-	private gameObject obj[];
+	private CopyOnWriteArrayList<GameObject> obj;
 	private boolean running = true;
 	
-	public movementHandler(gameObject[] obj, int trackSpeed) {
+	public MovementHandler(CopyOnWriteArrayList<GameObject> obj, int trackSpeed) {
 		this.obj = obj;
 		this.trackSpeed = trackSpeed; // check how many times per second
 	}
@@ -18,15 +22,17 @@ public class movementHandler implements Runnable{
 		while(running) {
 			// update the location of all objects
 			// needs debug
-			for(gameObject o: this.obj) {
-				if(o != null) {
-					locationProperties lp = o.getLocationProperties();
+			for(GameObject o: this.obj) {
+				if(o != null && !o.deleted) {
+					LocationProperties lp = o.getLocationProperties();
 					int timeLength = 1000 / trackSpeed;
 					if(timeLength <= 0) {
 						timeLength = 1;
 					}
 					PhysicsHandler p = new PhysicsHandler((double)lp.horizonAcc, (double)lp.horizonV, (double)timeLength);
 					o.horizonMove(p.getDiff());
+				}else if(o != null && o.deleted) {
+					obj.remove(o);
 				}
 			}
 			try {

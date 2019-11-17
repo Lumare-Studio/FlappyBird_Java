@@ -4,9 +4,11 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
-public class renderer implements Runnable{
-	private gameObject[] objList;
+public class Renderer implements Runnable{
+	private CopyOnWriteArrayList<GameObject> objList;
 	private boolean isRunning = true;
 	private Canvas c;
 	private BufferStrategy b;
@@ -14,7 +16,7 @@ public class renderer implements Runnable{
 	private int FPS;
 	
 	
-	public renderer(gameObject[] objList, int FPS, Canvas canvas) {
+	public Renderer(CopyOnWriteArrayList<GameObject> objList, int FPS, Canvas canvas) {
 		this.objList = objList;
 		this.c = canvas;
 		this.FPS = FPS;
@@ -28,12 +30,11 @@ public class renderer implements Runnable{
 			this.g = b.getDrawGraphics();
 			g.clearRect(0, 0, (int)c.getSize().getWidth(),(int)c.getSize().getHeight()); // clear canvas
 			g.setColor(Color.red);
-			for(gameObject o: objList) {
+			for(GameObject o: objList) {
 				if(o != null){
 					int x = o.getX();
 					int y = o.getY();
 					g.fillRect(x, y, o.getWidth(), o.getHeight());
-					System.out.println(x + " " + y + " " + o.getWidth() + " " +o.getHeight()); // debug
 				}
 			}
 			b.show();

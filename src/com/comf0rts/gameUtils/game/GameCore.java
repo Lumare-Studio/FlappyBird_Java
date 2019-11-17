@@ -4,9 +4,10 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
-
-
-import com.comf0rts.gameUtils.tools.PhysicsHandler;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Random;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 
 public class GameCore implements Runnable{
@@ -19,7 +20,8 @@ public class GameCore implements Runnable{
 	private Canvas canvas;
 	private BufferStrategy bs;
 	private boolean isRunning = true;
-	private gameObject[] objList;
+	private CopyOnWriteArrayList<GameObject> objList;
+	
 	
 	public void run() {
 		// Init canvas, Bufferstrategy, and Pen(Graphics g)
@@ -30,20 +32,29 @@ public class GameCore implements Runnable{
 			return;
 		}
 		g = bs.getDrawGraphics();
-		// init gameObject array
-		objList = new gameObject[5];
-		// add a pipe
-		drawPipes();
+		// init GameObject array
+		objList = new CopyOnWriteArrayList<>();
 		
 		// start rendering
-		renderer r = new renderer(objList, FPS, canvas);
+		Renderer r = new Renderer(objList, FPS, canvas);
 		Thread t1 = new Thread(r);
 		t1.start();
 		
 		// init movement tracking
-		movementHandler mh = new movementHandler(objList, TRACKSPEED );
+		MovementHandler mh = new MovementHandler(objList, TRACKSPEED);
 		Thread t2 = new Thread(mh);
 		t2.start();
+		
+		
+		// populate objects in the game
+		int sizeCount = objList.size();
+		while(isRunning) {
+			System.out.println("AddPipe, sizeCount = " + sizeCount + "objList.size = " + objList.size());
+			if(sizeCount<= 0 || objList.size() < sizeCount) {
+				drawPipes();
+			}
+			sizeCount = objList.size();
+		}
 	}
 	
 	
@@ -52,9 +63,16 @@ public class GameCore implements Runnable{
 	}
 	
 	private void drawPipes() {
-		locationProperties tempLp = new locationProperties(0 , 0 , 100 , 0);
-		gameObject newPipe = new gameObject(0, 0, 100, 100, tempLp);
-		objList[0] = newPipe;
+		Random r = new Random();
+		int minHeight = 80;
+		int pipeSpeed = -1000;
+		int survivalSpace = 100;
+		int pipeHeight = r.nextInt(HEIGHT - minHeight - survivalSpace) + minHeight ;
+		LocationProperties tempLp = new LocationProperties(0 , 0 , pipeSpeed , 0);
+		GameObject upperPipe = new GameObject(700, 0, 100, pipeHeight, tempLp);
+		GameObject lowerPipe = new GameObject(700, pipeHeight + survivalSpace, 100, HEIGHT - pipeHeight - survivalSpace, tempLp);
+		objList.add(upperPipe);
+		objList.add(lowerPipe);
 	}
 	
 	public Dimension getDimension() {
