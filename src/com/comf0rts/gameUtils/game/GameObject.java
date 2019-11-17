@@ -63,7 +63,7 @@ public class GameObject {
 	
 	public void checkUnload() {
 		// debug
-		if(x < 0) {
+		if(x < 0 - width) {
 			this.deleted = true;
 		}
 	}

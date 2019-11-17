@@ -4,8 +4,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Random;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -15,7 +13,7 @@ public class GameCore implements Runnable{
 	private final int HEIGHT = 432; // height of the window
 	private final String TITLE = "Canvas Test"; // Window title
 	private final int FPS = 60; // How many frames per seconds
-	private final int TRACKSPEED = 500; // How many frames per seconds
+	private final int TRACKSPEED = 100; // How many frames per seconds
 	private Graphics g;
 	private Canvas canvas;
 	private BufferStrategy bs;
@@ -49,7 +47,6 @@ public class GameCore implements Runnable{
 		// populate objects in the game
 		int sizeCount = objList.size();
 		while(isRunning) {
-			System.out.println("AddPipe, sizeCount = " + sizeCount + "objList.size = " + objList.size());
 			if(sizeCount<= 0 || objList.size() < sizeCount) {
 				drawPipes();
 			}
@@ -64,13 +61,13 @@ public class GameCore implements Runnable{
 	
 	private void drawPipes() {
 		Random r = new Random();
-		int minHeight = 80;
-		int pipeSpeed = -1000;
+		int minHeight = 30;
+		int pipeSpeed = -300;
 		int survivalSpace = 100;
 		int pipeHeight = r.nextInt(HEIGHT - minHeight - survivalSpace) + minHeight ;
 		LocationProperties tempLp = new LocationProperties(0 , 0 , pipeSpeed , 0);
-		GameObject upperPipe = new GameObject(700, 0, 100, pipeHeight, tempLp);
-		GameObject lowerPipe = new GameObject(700, pipeHeight + survivalSpace, 100, HEIGHT - pipeHeight - survivalSpace, tempLp);
+		GameObject upperPipe = new GameObject(800, 0, 100, pipeHeight, tempLp);
+		GameObject lowerPipe = new GameObject(800, pipeHeight + survivalSpace, 100, HEIGHT - pipeHeight - survivalSpace, tempLp);
 		objList.add(upperPipe);
 		objList.add(lowerPipe);
 	}
