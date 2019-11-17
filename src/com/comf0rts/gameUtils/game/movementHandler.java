@@ -25,7 +25,7 @@ public class movementHandler implements Runnable{
 					if(timeLength <= 0) {
 						timeLength = 1;
 					}
-					PhysicsHandler p = new PhysicsHandler(lp.horizonAcc, lp.horizonV, timeLength);
+					PhysicsHandler p = new PhysicsHandler((double)lp.horizonAcc, (double)lp.horizonV, (double)timeLength);
 					o.horizonMove(p.getDiff());
 				}
 			}
