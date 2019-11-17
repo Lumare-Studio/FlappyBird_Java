@@ -4,69 +4,56 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
-
-
-import com.comf0rts.gameUtils.tools.PhysicsHandler;
+import java.util.LinkedList;
+import java.util.List;
 
 
 public class GameCore implements Runnable{
-	private final int WIDTH = 432; // width of the window
-	private final int HEIGHT = 768; // height of the window
+	private final int WIDTH = 768; // width of the window
+	private final int HEIGHT = 432; // height of the window
 	private final String TITLE = "Canvas Test"; // Window title
-	private final int FPS = 1; // How many frames per seconds
+	private final int FPS = 60; // How many frames per seconds
+	private final int TRACKSPEED = 100; // How many frames per seconds
 	private Graphics g;
 	private Canvas canvas;
 	private BufferStrategy bs;
+	private boolean isRunning = true;
+	private List<GameObject> objList;
 	
 	public void run() {
+		// Init canvas, Bufferstrategy, and Pen(Graphics g)
 		canvas.setBackground(Color.gray);
 		bs = canvas.getBufferStrategy();
 		if(bs == null) {
 			canvas.createBufferStrategy(1);
 			return;
 		}
-
-		//FPS independent implementation
-		//Nano second
-		double timePerTick = 1000000000 / FPS;
-		double delta = 0;
-		double timer = 0;
-		long now;
-		long lastTime = System.nanoTime();
-	    
-		// debug
-		int x = 0;
-	    int y = 0;
-		while(1==1) {
-			now = System.nanoTime();
-			delta = (now - lastTime) / timePerTick;
-			timer += delta;
-			lastTime = now;
-
-			if (timer >= 1) {
-				g = bs.getDrawGraphics();
-
-				//draw the bird
-				g.clearRect(0, 0, WIDTH, HEIGHT);
-				g.setColor(Color.red);
-				g.fillRect(x, y, 20, 20);
-				// end drawing
-				bs.show();
-				g.dispose();
-				if(x >= WIDTH) {
-					x = 0;
-					y += 20;
-					if( y >= HEIGHT) {
-						y = 0;
-					}
-				}else {
-					x += Math.ceil((double) 200 / FPS);
-				}
-				timer--;
-			}
-
-		}
+		g = bs.getDrawGraphics();
+		// init GameObject array
+		objList = new LinkedList<>();
+		// add a pipe
+		drawPipes();
 		
+		// start rendering
+		Renderer r = new Renderer(objList, FPS, canvas);
+		Thread t1 = new Thread(r);
+		t1.start();
+		
+		// init movement tracking
+		MovementHandler mh = new MovementHandler(objList, TRACKSPEED );
+		Thread t2 = new Thread(mh);
+		t2.start();
+	}
+	
+	
+	private void drawBird() {
+		
+	}
+	
+	private void drawPipes() {
+		LocationProperties tempLp = new LocationProperties(0 , 0 , -2 , 0);
+		GameObject newPipe = new GameObject(700, 0, 100, 100, tempLp);
+		objList.add(newPipe);
 	}
 	
 	public Dimension getDimension() {
