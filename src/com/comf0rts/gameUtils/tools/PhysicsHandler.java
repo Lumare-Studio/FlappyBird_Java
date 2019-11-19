@@ -7,6 +7,9 @@ public class PhysicsHandler {
 	public static double getDiff(double acc, double velocity, double timeLength) {
 		double result = 0;
 		result = (1/2)*acc*(timeLength * timeLength) + velocity * timeLength;
+		System.out.println("timeLength:" + timeLength
+						+	" velocity:" + velocity
+						+   " result: "  + result);
 		return result;
 	}
 }

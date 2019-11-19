@@ -14,7 +14,6 @@ public class GameCore implements Runnable{
 	private final int HEIGHT = 432; // height of the window
 	private final String TITLE = "Canvas Test"; // Window title
 	private final int FPS = 60; // How many frames per seconds
-	private final int TRACKSPEED = 100; // How many frames per seconds
 	private Graphics g;
 	private Canvas canvas;
 	private BufferStrategy bs;
@@ -40,7 +39,7 @@ public class GameCore implements Runnable{
 		t1.start();
 		
 		// init movement tracking
-		MovementHandler mh = new MovementHandler(objList, TRACKSPEED);
+		MovementHandler mh = new MovementHandler(objList);
 		Thread t2 = new Thread(mh);
 		t2.start();
 		
@@ -79,7 +78,7 @@ public class GameCore implements Runnable{
 	private void drawPipes() {
 		Random r = new Random();
 		int minHeight = 30;
-		int pipeSpeed = -300;
+		int pipeSpeed = -1;
 		int survivalSpace = 150;
 		int pipeHeight = r.nextInt(HEIGHT - minHeight - survivalSpace) + minHeight ;
 		LocationProperties tempLp = new LocationProperties(0, 0, pipeSpeed, 0);
