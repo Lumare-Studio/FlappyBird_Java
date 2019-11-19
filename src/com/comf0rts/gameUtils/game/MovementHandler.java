@@ -29,8 +29,9 @@ public class MovementHandler implements Runnable{
 					if(timeLength <= 0) {
 						timeLength = 1;
 					}
-					PhysicsHandler p = new PhysicsHandler((double)lp.horizonAcc, (double)lp.horizonV, (double)timeLength);
-					o.horizonMove(p.getDiff());
+					double diff = PhysicsHandler.getDiff((double)lp.horizonAcc, (double)lp.horizonV, (double)timeLength);
+					o.horizonMove(diff);
+					System.out.println(diff);
 					o.getLocationProperties().horizonV += o.getLocationProperties().horizonAcc;
 				}else if(o != null && o.deleted) {
 					obj.remove(o);
