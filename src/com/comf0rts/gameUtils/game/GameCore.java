@@ -13,8 +13,7 @@ public class GameCore implements Runnable{
 	private final int WIDTH = 768; // width of the window
 	private final int HEIGHT = 432; // height of the window
 	private final String TITLE = "Canvas Test"; // Window title
-	private final int FPS = 60; // How many frames per seconds
-	private final int TRACKSPEED = 100; // How many frames per seconds
+	private final int FPS = 100; // How many frames per seconds
 	private Graphics g;
 	private Canvas canvas;
 	private BufferStrategy bs;
@@ -40,14 +39,16 @@ public class GameCore implements Runnable{
 		rendT.start();
 		
 		// init movement tracking
-		MovementHandler mh = new MovementHandler(objList, TRACKSPEED);
-		Thread mvT = new Thread(mh);
-		mvT.start();
+		MovementHandler mvT = new MovementHandler(objList);
+		Thread t2 = new Thread(mvT);
+		t2.start();
 
 		PipeDrawer piDrawer = new PipeDrawer(HEIGHT, WIDTH, objList);
 		Thread piDrawT = new Thread(piDrawer);
 		piDrawT.start();
 
+
+		
 		drawBird();
 		boolean gameOver = false;
 		while(isRunning) {
@@ -78,7 +79,7 @@ public class GameCore implements Runnable{
 		GameObject bird = new GameObject(xPos, yPos, width, height, birdLp);
 		objList.add(bird);
 	}
-	
+
 	public Dimension getDimension() {
 		return new Dimension(WIDTH, HEIGHT);
 	}

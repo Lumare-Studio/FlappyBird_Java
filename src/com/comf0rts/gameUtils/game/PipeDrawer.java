@@ -7,6 +7,9 @@ public class PipeDrawer implements Runnable {
     private int height;
     private int width;
     private List<GameObject> objList;
+    private final int PIPE_SPEED = -1000;
+    private final int distanceInterVal = 500; //Distance between pipes
+    private final int minHeight = 15;
 
     public PipeDrawer(int height, int width, List<GameObject> objList) {
         this.height = height;
@@ -19,11 +22,10 @@ public class PipeDrawer implements Runnable {
         // populate objects in the game
         boolean isRunning = true;
         int sizeCount = (int) Math.ceil((double) width / 100) + 1; //How many pipes we need for running the game
-        int distanceInterVal = 200; //Distance between pipes
-        int sleepTime = 1000 * (int) Math.ceil((double) distanceInterVal / 100); //distanceInterVal / pipeSpeed (milisec)
+        int sleepTime = (int) Math.ceil((1000 * (double) distanceInterVal / (double) (-PIPE_SPEED))); //distanceInterVal / pipeSpeed (milisec)
         while(isRunning) {
             //Movement of bird and pipers might need to be added into different lists
-            if(objList.size() <= 0 || objList.size() < sizeCount * 2) {
+            if(objList.size() == 0 || objList.size() < sizeCount * 2) {
                 drawPipes();
             }
             try {
@@ -38,8 +40,7 @@ public class PipeDrawer implements Runnable {
 
     private void drawPipes() {
         Random r = new Random();
-        int minHeight = 30;
-        int pipeSpeed = -300;
+        int pipeSpeed = PIPE_SPEED;
         int survivalSpace = 150;
         int pipeHeight = r.nextInt(height - minHeight - survivalSpace) + minHeight ;
         LocationProperties tempLp = new LocationProperties(0, 0, pipeSpeed, 0);
