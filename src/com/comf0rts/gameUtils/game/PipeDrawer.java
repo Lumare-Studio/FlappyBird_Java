@@ -7,8 +7,8 @@ public class PipeDrawer implements Runnable {
     private int height;
     private int width;
     private List<GameObject> objList;
-    private final int PIPE_SPEED = -1000;
-    private final int distanceInterVal = 500; //Distance between pipes
+    private final int PIPE_SPEED = -300;
+    private final int distanceInterVal = 400; //Distance between pipes
     private final int minHeight = 15;
 
     public PipeDrawer(int height, int width, List<GameObject> objList) {
