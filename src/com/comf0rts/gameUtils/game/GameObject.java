@@ -43,8 +43,8 @@ public class GameObject {
 	public void verticalMove(double diff) {
 		this.yDiffCum += diff;
 		if(Math.abs(yDiffCum) >= 1) {
-			this.y+= (int)xDiffCum;
-			yDiffCum = 0.0;
+			this.y+= (int)(yDiffCum - yDiffCum % 1);
+			yDiffCum = yDiffCum % 1;
 		}
 		checkUnload();
 	}
