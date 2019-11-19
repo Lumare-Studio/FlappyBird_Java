@@ -53,7 +53,10 @@ public class GameCore implements Runnable{
 		while(isRunning) {
 			if (gameOver) {
 				removeLists();
+				gameOver = false;
 			}
+
+
 		}
 	}
 
