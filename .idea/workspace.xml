@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="6035f4b4-360e-4a14-b97c-3fbe986225a8" name="Default Changelist" comment="Merge branch 'master' of https://github.com/Cmf0rTS1997/GameUtil into FrameIndependent&#10;&#10;# Conflicts:&#10;#&#9;src/com/comf0rts/gameUtils/game/GameCore.java">
       <change beforePath="$PROJECT_DIR$/src/com/comf0rts/gameUtils/game/GameCore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/comf0rts/gameUtils/game/GameCore.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/comf0rts/gameUtils/game/MovementHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/comf0rts/gameUtils/game/MovementHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/comf0rts/gameUtils/game/PipeDrawer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/comf0rts/gameUtils/game/PipeDrawer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/comf0rts/gameUtils/tools/PhysicsHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/comf0rts/gameUtils/tools/PhysicsHandler.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/bin/" />
@@ -43,8 +41,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/com/comf0rts/gameUtils/game/GameCore.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="184">
-                  <caret line="15" column="31" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
+                <state relative-caret-position="414">
+                  <caret line="73" column="22" selection-start-line="73" selection-start-column="22" selection-end-line="73" selection-end-column="22" />
                 </state>
               </provider>
             </entry>
@@ -52,8 +50,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/com/comf0rts/gameUtils/game/PipeDrawer.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="253">
-                  <caret line="11" column="37" lean-forward="true" selection-start-line="11" selection-start-column="37" selection-end-line="11" selection-end-column="37" />
+                <state relative-caret-position="161">
+                  <caret line="10" column="44" selection-start-line="10" selection-start-column="44" selection-end-line="10" selection-end-column="44" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -311,7 +309,7 @@
       <workItem from="1573995708694" duration="1285000" />
       <workItem from="1573997539528" duration="2168000" />
       <workItem from="1574057409286" duration="7068000" />
-      <workItem from="1574145291401" duration="7419000" />
+      <workItem from="1574145291401" duration="8306000" />
     </task>
     <task id="LOCAL-00001" summary="FPS without thread">
       <created>1573967156381</created>
@@ -331,13 +329,12 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="32814000" />
+    <option name="totallyTimeSpent" value="33701000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13539445" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13539445" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -346,7 +343,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49946696" weight="0.32936078" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.565032" visible="true" weight="0.16468039" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.565032" visible="true" weight="0.16468039" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -504,15 +501,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/comf0rts/gameUtils/game/GameCore.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="15" column="31" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
+        <state relative-caret-position="414">
+          <caret line="73" column="22" selection-start-line="73" selection-start-column="22" selection-end-line="73" selection-end-column="22" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/comf0rts/gameUtils/game/PipeDrawer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="11" column="37" lean-forward="true" selection-start-line="11" selection-start-column="37" selection-end-line="11" selection-end-column="37" />
+        <state relative-caret-position="161">
+          <caret line="10" column="44" selection-start-line="10" selection-start-column="44" selection-end-line="10" selection-end-column="44" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
