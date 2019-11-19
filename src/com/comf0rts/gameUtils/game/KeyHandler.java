@@ -22,7 +22,7 @@ public class KeyHandler implements KeyListener{
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getKeyCode() == KEYCODE) {
-			bird.getLocationProperties().verticalV = 50;
+			bird.getLocationProperties().verticalV = -400;
 		}
 	}
 

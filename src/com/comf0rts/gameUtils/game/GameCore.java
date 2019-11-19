@@ -1,5 +1,8 @@
 package com.comf0rts.gameUtils.game;
 import javax.xml.stream.Location;
+
+import com.comf0rts.gameUtils.tools.WindowHandler;
+
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -19,6 +22,8 @@ public class GameCore implements Runnable{
 	private BufferStrategy bs;
 	private boolean isRunning = true;
 	private CopyOnWriteArrayList<GameObject> objList;
+	private KeyHandler key;
+	private WindowHandler window;
 	
 	
 	public void run() {
@@ -49,7 +54,9 @@ public class GameCore implements Runnable{
 
 		
 		
-		drawBird();
+		GameObject bird = drawBird();
+		key = new KeyHandler(bird);
+		window.getFrame().addKeyListener(key);
 		boolean gameOver = false;
 		while(isRunning) {
 			if (gameOver) {
@@ -69,7 +76,7 @@ public class GameCore implements Runnable{
 	}
 	
 	//Draw bird based on developer's preferences
-	private void drawBird() {
+	private GameObject drawBird() {
 		int birdVerAcc = 10; //Gravity
 		int width = 35;
 		int height = 35;
@@ -78,6 +85,7 @@ public class GameCore implements Runnable{
 		LocationProperties birdLp = new LocationProperties(0, birdVerAcc, 0, 0);
 		GameObject bird = new GameObject(xPos, yPos, width, height, birdLp);
 		objList.add(bird);
+		return bird;
 	}
 
 	public Dimension getDimension() {
@@ -90,5 +98,9 @@ public class GameCore implements Runnable{
 	
 	public void setCanvasAndGraphics(Canvas canvas) {
 		this.canvas = canvas;
+	}
+	
+	public void setWindow(WindowHandler window) {
+		this.window = window;
 	}
 }
