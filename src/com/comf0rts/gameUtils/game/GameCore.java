@@ -47,7 +47,7 @@ public class GameCore implements Runnable{
 		Thread piDrawT = new Thread(piDrawer);
 		piDrawT.start();
 
-
+		
 		
 		drawBird();
 		boolean gameOver = false;
@@ -70,9 +70,9 @@ public class GameCore implements Runnable{
 	
 	//Draw bird based on developer's preferences
 	private void drawBird() {
-		int birdVerAcc = 50; //Gravity
-		int width = 50;
-		int height = 50;
+		int birdVerAcc = 10; //Gravity
+		int width = 35;
+		int height = 35;
 		int xPos = (int) Math.ceil((double) WIDTH * 1/ 3) - width;
 		int yPos = (int) Math.ceil((double) HEIGHT / 2) - height;
 		LocationProperties birdLp = new LocationProperties(0, birdVerAcc, 0, 0);
