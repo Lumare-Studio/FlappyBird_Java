@@ -34,8 +34,8 @@ public class GameObject {
 	public void horizonMove(double diff) {
 		this.xDiffCum += diff;
 		if(Math.abs(xDiffCum)>=1) {
-			this.x+= (int)xDiffCum;
-			xDiffCum = 0.0;
+			this.x+= (int)(xDiffCum - xDiffCum % 1);
+			xDiffCum = xDiffCum % 1;
 		}
 		checkUnload();
 	}
