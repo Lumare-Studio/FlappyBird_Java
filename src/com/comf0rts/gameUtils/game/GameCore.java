@@ -36,31 +36,31 @@ public class GameCore implements Runnable{
 		
 		// start rendering
 		Renderer r = new Renderer(objList, FPS, canvas);
-		Thread t1 = new Thread(r);
-		t1.start();
+		Thread rendT = new Thread(r);
+		rendT.start();
 		
 		// init movement tracking
 		MovementHandler mh = new MovementHandler(objList, TRACKSPEED);
-		Thread t2 = new Thread(mh);
-		t2.start();
-		
+		Thread mvT = new Thread(mh);
+		mvT.start();
+
+		PipeDrawer piDrawer = new PipeDrawer(HEIGHT, WIDTH, objList);
+		Thread piDrawT = new Thread(piDrawer);
+		piDrawT.start();
+
 		drawBird();
-		// populate objects in the game
-		int sizeCount = (int) Math.ceil((double) WIDTH / 100) + 1; //How many pipes we need for running the game
-		int distanceInterVal = 200; //Distance between pipes
-		int sleepTime = 1000 * (int) Math.ceil((double) distanceInterVal / 100); //distanceInterVal / pipeSpeed (milisec)
+		boolean gameOver = false;
 		while(isRunning) {
-			//Movement of bird and pipers might need to be added into different lists
-			if(objList.size() <= 0 || objList.size() < sizeCount * 2) {
-				drawPipes();
+			if (gameOver) {
+				removeLists();
 			}
-			try {
-				//Better to have another thread handling this
-				Thread.sleep(sleepTime);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		}
+	}
+
+	//GameOver method
+	private void removeLists() {
+		while(!objList.isEmpty()) {
+			objList.remove(0);
 		}
 	}
 	
@@ -74,19 +74,6 @@ public class GameCore implements Runnable{
 		LocationProperties birdLp = new LocationProperties(0, birdVerAcc, 0, 0);
 		GameObject bird = new GameObject(xPos, yPos, width, height, birdLp);
 		objList.add(bird);
-	}
-	
-	private void drawPipes() {
-		Random r = new Random();
-		int minHeight = 30;
-		int pipeSpeed = -300;
-		int survivalSpace = 150;
-		int pipeHeight = r.nextInt(HEIGHT - minHeight - survivalSpace) + minHeight ;
-		LocationProperties tempLp = new LocationProperties(0, 0, pipeSpeed, 0);
-		GameObject upperPipe = new GameObject(WIDTH, 0, 100, pipeHeight, tempLp);
-		GameObject lowerPipe = new GameObject(WIDTH, pipeHeight + survivalSpace, 100, HEIGHT - pipeHeight - survivalSpace, tempLp);
-		objList.add(upperPipe);
-		objList.add(lowerPipe);
 	}
 	
 	public Dimension getDimension() {
