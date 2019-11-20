@@ -44,8 +44,8 @@ public class MovementHandler implements Runnable{
 		
 	}
 	
-	public void endTracking() {
-		running = false;
+	public void stopThread() {
+		this.running = false;
 	}
 	
 }

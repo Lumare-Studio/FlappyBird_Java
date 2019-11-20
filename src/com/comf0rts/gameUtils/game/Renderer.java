@@ -66,4 +66,8 @@ public class Renderer implements Runnable{
 		
 	}
 	
+	public void stopThread() {
+		this.isRunning = false;
+	}
+	
 }

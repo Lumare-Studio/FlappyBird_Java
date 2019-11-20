@@ -8,6 +8,7 @@ public class KeyHandler implements KeyListener{
 
 	private GameObject bird;
 	private final int KEYCODE = 32; // keycode of spacebar
+	private boolean started = false;
 	
 	public KeyHandler(GameObject bird) {
 		this.bird = bird;
@@ -20,9 +21,9 @@ public class KeyHandler implements KeyListener{
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
 		if(e.getKeyCode() == KEYCODE) {
 			bird.getLocationProperties().verticalV = -400;
+			bird.getLocationProperties().verticalAcc = 15;
 		}
 	}
 
