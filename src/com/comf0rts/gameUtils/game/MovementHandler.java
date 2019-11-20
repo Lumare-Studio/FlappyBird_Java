@@ -30,8 +30,10 @@ public class MovementHandler implements Runnable{
 					o.verticalMove(verticalDiff);
 					o.getLocationProperties().horizonV += o.getLocationProperties().horizonAcc;
 					o.getLocationProperties().verticalV += o.getLocationProperties().verticalAcc;
-				}else if(o != null && o.deleted) {
-					obj.remove(o);
+				}else if(o != null) {
+					if (!o.getType().equals("background")) {
+						obj.remove(o);
+					}
 				}
 			}
 			try {

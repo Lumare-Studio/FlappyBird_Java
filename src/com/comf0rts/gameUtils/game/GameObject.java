@@ -8,6 +8,7 @@ public class GameObject {
 	private int iniy;
 	private double yDiffCum;
 	private String skin = null; // Skin files(not implemented)
+	private String type;
 	private int height;
 	private int width;
 	private LocationProperties lp;
@@ -20,7 +21,7 @@ public class GameObject {
 	 * @param height height of the object
 	 * @param lp an object that described veritical and horizontal speed and acceleration of the object
 	 */
-	public GameObject(int x, int y, int width, int height, LocationProperties lp) {
+	public GameObject(int x, int y, int width, int height, LocationProperties lp, String type) {
 		this.x = x;
 		this.iniX = x;
 		this.y = y;
@@ -28,6 +29,7 @@ public class GameObject {
 		this.height = height;
 		this.width = width;
 		this.lp  = lp;
+		this.type = type;
 	}
 	
 	/**
@@ -38,8 +40,8 @@ public class GameObject {
 	 * @param lp
 	 * @param skin location of the skin file of this object
 	 */
-	public GameObject(int x, int y, int width, int height, LocationProperties lp, String skin) {
-		this(x, y, width, height, lp);
+	public GameObject(int x, int y, int width, int height, LocationProperties lp,String type, String skin) {
+		this(x, y, width, height, lp, type);
 		this.skin = skin;
 	}
 	
@@ -99,4 +101,6 @@ public class GameObject {
 	public String getSkin() {
 		return this.skin;
 	}
+
+	public String getType() {return this.type;}
 }
