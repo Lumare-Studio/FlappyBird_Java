@@ -15,8 +15,8 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class GameCore implements Runnable{
 	private final int WIDTH = 768; // width of the window
 	private final int HEIGHT = 432; // height of the window
-	private final String TITLE = "Canvas Test"; // Window title
-	private final int FPS = 100; // How many frames per seconds
+	private final String TITLE = "Crappy Bird"; // Window title
+	private final int FPS = 60; // How many frames per seconds
 	private Graphics g;
 	private Canvas canvas;
 	private BufferStrategy bs;
@@ -28,7 +28,6 @@ public class GameCore implements Runnable{
 	
 	public void run() {
 		// Init canvas, Bufferstrategy, and Pen(Graphics g)
-		canvas.setBackground(Color.gray);
 		bs = canvas.getBufferStrategy();
 		if(bs == null) {
 			canvas.createBufferStrategy(1);
@@ -77,13 +76,14 @@ public class GameCore implements Runnable{
 	
 	//Draw bird based on developer's preferences
 	private GameObject drawBird() {
-		int birdVerAcc = 10; //Gravity
-		int width = 35;
-		int height = 35;
+		int birdVerAcc = 15; //Gravity
+		int width = 34;
+		int height = 24;
 		int xPos = (int) Math.ceil((double) WIDTH * 1/ 3) - width;
 		int yPos = (int) Math.ceil((double) HEIGHT / 2) - height;
+		String skin = "assets/bird.png";
 		LocationProperties birdLp = new LocationProperties(0, birdVerAcc, 0, 0);
-		GameObject bird = new GameObject(xPos, yPos, width, height, birdLp);
+		GameObject bird = new GameObject(xPos, yPos, width, height, birdLp, skin);
 		objList.add(bird);
 		return bird;
 	}

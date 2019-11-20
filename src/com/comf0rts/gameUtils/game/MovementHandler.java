@@ -1,7 +1,6 @@
 package com.comf0rts.gameUtils.game;
 import com.comf0rts.gameUtils.tools.PhysicsHandler;
 
-import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 // handles the movement of pipes and background

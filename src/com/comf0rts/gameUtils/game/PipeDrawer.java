@@ -44,8 +44,10 @@ public class PipeDrawer implements Runnable {
         int survivalSpace = 150;
         int pipeHeight = r.nextInt(height - minHeight - survivalSpace) + minHeight ;
         LocationProperties tempLp = new LocationProperties(0, 0, pipeSpeed, 0);
-        GameObject upperPipe = new GameObject(width, 0, 100, pipeHeight, tempLp);
-        GameObject lowerPipe = new GameObject(width, pipeHeight + survivalSpace, 100, height - pipeHeight - survivalSpace, tempLp);
+        String upperSkin = "assets/pipeUp.jpg";
+        String lowerSkin = "assets/pipeDown.png";
+        GameObject upperPipe = new GameObject(width, 0, 100, pipeHeight, tempLp, upperSkin);
+        GameObject lowerPipe = new GameObject(width, pipeHeight + survivalSpace, 100, height - pipeHeight - survivalSpace, tempLp, lowerSkin);
         objList.add(upperPipe);
         objList.add(lowerPipe);
     }

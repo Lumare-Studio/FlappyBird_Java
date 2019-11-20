@@ -7,12 +7,19 @@ public class GameObject {
 	private int y;
 	private int iniy;
 	private double yDiffCum;
-	private String skin; // Skin files(not implemented)
+	private String skin = null; // Skin files(not implemented)
 	private int height;
 	private int width;
 	private LocationProperties lp;
 	public boolean deleted = false; // Marks if the object should be deleted
 	
+	/**
+	 * @param x initial x coordinate
+	 * @param y initial y coordinate
+	 * @param width width of the object
+	 * @param height height of the object
+	 * @param lp an object that described veritical and horizontal speed and acceleration of the object
+	 */
 	public GameObject(int x, int y, int width, int height, LocationProperties lp) {
 		this.x = x;
 		this.iniX = x;
@@ -21,6 +28,19 @@ public class GameObject {
 		this.height = height;
 		this.width = width;
 		this.lp  = lp;
+	}
+	
+	/**
+	 * @param x
+	 * @param y
+	 * @param width
+	 * @param height
+	 * @param lp
+	 * @param skin location of the skin file of this object
+	 */
+	public GameObject(int x, int y, int width, int height, LocationProperties lp, String skin) {
+		this(x, y, width, height, lp);
+		this.skin = skin;
 	}
 	
 	public int getX() {
@@ -66,5 +86,17 @@ public class GameObject {
 		if(x < 0 - width) {
 			this.deleted = true;
 		}
+	}
+	
+	public boolean hasSkin() {
+		return !(this.skin == null);
+	}
+	
+	
+	/**
+	 * @return return the location of the assests image file
+	 */
+	public String getSkin() {
+		return this.skin;
 	}
 }
