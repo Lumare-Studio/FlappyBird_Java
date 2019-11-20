@@ -26,3 +26,4 @@
     - Independent thread for calculating the precise positions of all of currently existing GameObjects
   - ### Renderer
     - Independent thread for rendering all of currently existing GameObjects with specified FPS
+# Made by Qiming Guan & Tianshu Wang
